@@ -17,8 +17,10 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-/*Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'jwt.auth'], function () {
     Route::resource('jokes', 'JokesController');
-});*/
+});
 
-Route::resource('jokes', 'JokesController');
+Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+Route::post('authenticate', 'AuthenticateController@authenticate');
+Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
