@@ -65,7 +65,7 @@ class JokesController extends Controller
 
     public function store (Request $request) {
          if(!$request->body or !$request->user_id){
-            return Response::json([
+            return response()->json([
                 'error' => [
                     'message' => 'Please Provide Both body and user_id'
                 ]
